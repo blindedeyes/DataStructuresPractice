@@ -16,6 +16,9 @@
     <Filter Include="Header Files\DynamicArray">
       <UniqueIdentifier>{94eff1da-3c92-49a3-8c4f-3697f155abe9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\List">
+      <UniqueIdentifier>{3953890b-425f-4fd3-872b-fc49be5cf2cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -29,6 +32,9 @@
     </ClInclude>
     <ClInclude Include="DynamicArray.h">
       <Filter>Header Files\DynamicArray</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkList.h">
+      <Filter>Header Files\List</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
