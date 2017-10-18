@@ -1,8 +1,11 @@
 #pragma once
+template<typename type>
+class LinkedListIter;
 
 template<typename type>
 class LinkedList
 {
+	friend LinkedListIter;
 	struct node
 	{
 		type data;
@@ -24,6 +27,32 @@ public:
 	void Clear();
 
 	const unsigned int Count();
+
+	void Remove(LinkedListIter* itr);
+	void Insert(LinkedListIter* itr);
+};
+
+template<typename type>
+class LinkedListIter
+{
+	friend LinkedList;
+	LinkedList<type> * m_list;
+	LinkedList<type>::node* m_curr, *m_prev;
+
+public:
+	LinkedListIter(LinkedList* l)
+	{
+		m_list = l;
+	}
+	~LinkedListIter(){}
+
+	void operator++()
+	{
+		m_prev = m_curr;
+		m_curr = m_curr->next;
+	}
+
+	const type const current() { return m_curr->data; }
 };
 
 template<typename type>
@@ -81,4 +110,22 @@ template<typename type>
 inline const unsigned int LinkedList<type>::Count()
 {
 	return m_Count;
+}
+
+template<typename type>
+void LinkedList<type>::Remove(LinkedListIter * itr)
+{
+	m_prev->next = m_curr->next;
+	delete m_curr;
+	m_curr = m_prev->next;
+}
+
+template<typename type>
+void LinkedList<type>::Insert(LinkedListIter * itr, type data)
+{
+	node* n = new node();
+	n->data = data;
+	m_prev->next = n;
+	n->next = m_curr;
+	m_curr = n;
 }
